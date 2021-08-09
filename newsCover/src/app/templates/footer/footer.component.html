@@ -1,0 +1,11 @@
+<footer class="bg-info text-center text-white">
+  <div class="container p-2 pb-0">
+    <section class="mb-1">
+      <a *ngIf="role === 'client'" class="btn btn-outline-light btn-floating m-1" routerLink="/cover" role="button"><i class="fas fa-home"></i></a>
+      <a *ngIf="role === 'admin'" class="btn btn-outline-light btn-floating m-1" routerLink="/category-table" role="button"><i class="fas fa-home"></i></a>
+    </section>
+  </div>
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    Omelina - varsdev
+  </div>
+</footer>

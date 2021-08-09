@@ -1,0 +1,25 @@
+<!-- Font awesome -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="btn btn-info" *ngIf="role === 'client' || role === 'admin'" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false" (click)="logout()">
+      <i class="fas fa-user"></i>
+      Log out
+    </a>
+    <div *ngIf="role === 'client'" class="btn-group" role="group" aria-label="Basic example">
+      <button routerLink="/resource-table" type="button" class="btn btn-info">Resources</button>
+      <button routerLink="/cover" type="button" class="btn btn-info">Cover</button>
+    </div>
+    <div *ngIf="role === 'admin'" class="btn-group" role="group" aria-label="Basic example">
+      <button routerLink="/category-table" type="button" class="btn btn-info">Categories</button>
+    </div>
+    <a *ngIf="role === 'client'" routerLink="/cover" role="button" class="navbar-brand">
+      <img src="assets/logoNav.png" width="40" height="40" alt="">
+    </a>
+    <a *ngIf="role === 'admin'" routerLink="/category-table" role="button" class="navbar-brand">
+      <img src="assets/logoNav.png" width="40" height="40" alt="">
+    </a>
+  </div>
+</nav>
