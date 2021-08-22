@@ -8,6 +8,8 @@ import { ResourceI } from '../../modules/resource.interface';
 import { NewsI } from '../../modules/news.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EmailI } from 'src/app/modules/email.inteface';
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class ApiNewsService {
 
   url:string = "http://localhost:3000/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private auth:AuthService) { }
 
   // USER
   /**
@@ -24,9 +26,24 @@ export class ApiNewsService {
    * @param form Objeto tipo LoginI
    * @returns Objeto tipo MessageI
    */
-  loginByEmail(form:LoginI):Observable<MessageI>{
+  login(form:LoginI):Observable<MessageI>{
     let direction = this.url + "users/singin";
     return this.http.post<MessageI>(direction, form);
+  }
+
+  loginByEmail(form:EmailI):Observable<MessageI>{
+    let direction = this.url + "sendEmailLogin";
+    return this.http.post<MessageI>(direction, form);
+  }
+
+  email(id:string):Observable<any>{
+    let direction = this.url + "emailLogin/" + id;
+    return this.http.get<any>(direction);
+  }
+
+  tft(tft:any):Observable<any>{
+    let direction = this.url + "tft";
+    return this.http.post<any>(direction, tft);
   }
 
   /**
@@ -34,6 +51,7 @@ export class ApiNewsService {
    * @returns Obejto tipo MessageI
    */
   logout():Observable<MessageI>{
+    this.auth.logout();
     let direction = this.url + "users/logout";
     return this.http.get<MessageI>(direction);
   }
@@ -46,6 +64,11 @@ export class ApiNewsService {
   registerUser(form:RegisterI):Observable<MessageI>{
     let direction = this.url + "users/singup";
     return this.http.post<MessageI>(direction, form);
+  }
+
+  activateUser(id:any):Observable<MessageI>{
+    let direction = this.url + "activate/" + id;
+    return this.http.get<MessageI>(direction);
   }
 
   /**

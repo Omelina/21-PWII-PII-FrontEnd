@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   onRegister(form:RegisterI){
     this.api.registerUser(form).subscribe(data => {
       if(data.type_msg === "success"){
-        this.alerts.showSuccess('Proceed to login', 'Successful registration');
+        this.alerts.showSuccess('Check your email for activate your account', 'Successful registration');
         this.router.navigate(['login'])
       } else if (data.type_msg === "failed"){
         this.alerts.showError('Try again', 'Sign up failed');

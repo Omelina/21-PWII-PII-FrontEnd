@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiNewsService } from '../../services/api/api-news.service';
 import { LoginI } from '../../modules/login.interface';
 
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MessageI } from '../../modules/message.interface';
 import { UserI } from 'src/app/modules/user.interface';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
@@ -21,10 +21,7 @@ export class LoginComponent implements OnInit {
     password : new FormControl('', Validators.required)
   })
 
-  constructor(private api:ApiNewsService, private router:Router, private alerts:AlertsService) { }
-
-  errorStatus:boolean = false;
-  errorMsj:any = "";
+  constructor(private api:ApiNewsService, private router:Router, private alerts:AlertsService, private activerouter:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.checkUser();
@@ -52,19 +49,9 @@ export class LoginComponent implements OnInit {
    * @param form Objeto tipo LoginI
    */
   onLogin(form:LoginI){
-    this.api.loginByEmail(form).subscribe(data => {
+    this.api.login(form).subscribe(data => {
       if(data.type_msg === 'success'){
-        localStorage.setItem('userLog', data.description);
-      }
-      if(data.type_msg === 'success'){
-        this.api.getUser(data.description).subscribe(user => {
-          let userLog:UserI = user;
-          if(userLog.role === "admin"){
-            this.router.navigate(['category-table'])
-          } else if (userLog.role === "client"){
-            this.router.navigate(['resource-table'])
-          }
-        })
+        this.router.navigate(['tft'])
       } else if(data.type_msg === 'failed'){
         this.alerts.showError('Try again', 'Sign In failed');
         setTimeout(() => {
