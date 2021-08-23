@@ -28,7 +28,7 @@ export class TftComponent implements OnInit {
         if(data.user.role === 'admin'){
           this.router.navigate(['category-table']);
         } else if(data.user.role === 'client'){
-          this.router.navigate(['category-resource']);
+          this.router.navigate(['resource-table']);
         }
       } else if (data.type_msg === 'failed'){
         this.alerts.showError('Code is incorrect', '2FT');

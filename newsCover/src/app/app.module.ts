@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    GraphQLModule
   ],
   providers: [
     AuthGuard,

@@ -23,7 +23,7 @@ export class CheckEmailComponent implements OnInit {
             this.router.navigate(['category-table']);
           } else if(data.user.role === 'client'){
             console.log(data.user.role);
-            this.router.navigate(['category-resource']);
+            this.router.navigate(['resource-table']);
           }
         }
       })

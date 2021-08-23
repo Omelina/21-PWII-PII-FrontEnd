@@ -2,6 +2,7 @@ export interface NewsI{
 	_id:string;
 	title:string;
 	description:string;
+	category: string;
 	permanlink:string;
 	status:boolean;
 	date:Date;
